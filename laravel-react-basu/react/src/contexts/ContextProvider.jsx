@@ -12,7 +12,7 @@ const StateContext = createContext({
 const tmpReservations = [
   {
     id: 1,
-    image_url: "https://api.yoursurveys.xyz/images/vJutXzn02CDwdOyh.png",
+    image_url: "",
     title: "Shuttle BUS #1",
     slug: "Reservation Test",
     status: true,
@@ -159,7 +159,7 @@ const tmpReservations = [
   },
   {
     id: 2,
-    image_url: "https://api.yoursurveys.xyz/images/gjIHElz4aKrL0nT0.png",
+    image_url: "",
     title: "Shuttle BUS #2",
     slug: "Shuttle Bus",
     status: true,
@@ -171,7 +171,7 @@ const tmpReservations = [
   },
   {
     id: 3,
-    image_url: "https://api.yoursurveys.xyz/images/WPfzo0g66huUYYwR.png",
+    image_url: "",
     title: "Shuttle BUS #3",
     slug: "Shuttle Bus",
     status: true,

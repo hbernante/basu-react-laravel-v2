@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import RightSideDescription from "./ReservationDescription";
+import axios from 'axios';
+
 
 const ReservationForm = () => {
   const [name, setName] = useState("");
@@ -12,6 +14,7 @@ const ReservationForm = () => {
   const [hoveredShuttle, setHoveredShuttle] = useState(null);
   const [showSummary, setShowSummary] = useState(false);
   const [showConfirmation, setShowConfirmation] = useState(false);
+
 
   const reasonsOptions = ["Club Organization", "Field Trip", "Business"];
   const shuttleOptions = [
@@ -29,14 +32,38 @@ const ReservationForm = () => {
     // Optionally, you can reset the form state here
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!isValidEmail(email)) {
       alert('Please enter a valid email with the domain "student.apc.edu.ph".');
       return;
     }
-    setShowSummary(true);
-    setShowConfirmation(true);
+
+    const reservationData = {
+      name,
+      email,
+      reservation_date: reservationDate,
+      passenger_names: passengerNames,
+      reason,
+      description,
+      selected_shuttle: selectedShuttle,
+    };
+
+    try {
+      // Use Axios to make the POST request
+      const response = await axios.post('/reservationdemo', reservationData);
+
+      if (response.status === 200) {
+        setShowSummary(true);
+        setShowConfirmation(true);
+      } else {
+        console.error('Failed to submit reservation:', response.statusText);
+        // Handle the error as needed
+      }
+    } catch (error) {
+      console.error('Error submitting reservation:', response.error);
+      // Handle the error as needed
+    }
   };
 
   const isValidEmail = (email) => {
@@ -60,7 +87,9 @@ const ReservationForm = () => {
     setPassengerNames(updatedPassengerNames);
   };
 
+
   return (
+
     <div className="container mx-auto mt-8 grid grid-cols-1 lg:grid-cols-2 gap-8">
       <form
         onSubmit={handleSubmit}
@@ -89,8 +118,6 @@ const ReservationForm = () => {
             />
           </div>
 
-
-
           <div className="mb-4">
             <label
               htmlFor="email"
@@ -111,6 +138,31 @@ const ReservationForm = () => {
               Please use an email with the domain "student.apc.edu.ph".
             </p>
           </div>
+
+          </div>
+
+          <div>
+          {/* ... Existing form fields ... */}
+
+          {/* New input field for the reservation date */}
+          <div className="mb-4">
+            <label
+              htmlFor="reservationDate"
+              className="block text-sm font-medium text-gray-600"
+            >
+              Reservation Date
+            </label>
+            <input
+              type="date"
+              id="reservationDate"
+              selected={reservationDate}
+              onChange={(e) => setReservationDate(e.target.value)}
+              className="mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring focus:border-blue-300"
+              dateformat="yyyy-MM-dd"
+              required
+            />
+          </div>
+
 
           <div className="mb-4">
           <label htmlFor="reason" className="block text-sm font-medium text-gray-600">
@@ -134,6 +186,8 @@ const ReservationForm = () => {
             ))}
           </select>
         </div>
+
+
 
           <div className="mb-4">
             <label
@@ -235,6 +289,7 @@ const ReservationForm = () => {
           )}
         </div>
 
+
         {showSummary && (
           <div className="mb-4 p-4 border rounded-md bg-gray-100">
             <h3 className="text-xl font-semibold mb-2">Reservation Summary</h3>
@@ -334,5 +389,7 @@ const ReservationForm = () => {
     </div>
   );
 };
+
+
 
 export default ReservationForm;

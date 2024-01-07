@@ -14,6 +14,8 @@ export default function Reservation() {
   };
 
   return (
+
+
     <PageComponent
       title="Reservations"
       buttons={
@@ -33,5 +35,9 @@ export default function Reservation() {
         ))}
       </div>
     </PageComponent>
+
+
   );
+
+
 }
