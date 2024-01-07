@@ -15,11 +15,13 @@ const ReservationForm = () => {
 
   const reasonsOptions = ["Club Organization", "Field Trip", "Business"];
   const shuttleOptions = [
-    { name: "Shuttle A", image: "shuttle_a_image.jpg" },
-    { name: "Shuttle B", image: "shuttle_b_image.jpg" },
-    { name: "Shuttle C", image: "shuttle_c_image.jpg" },
-    { name: "Shuttle D", image: "shuttle_d_image.jpg" },
+    { name: "Shuttle A", image: "/images/apc_shuttle_bus.png" },
+    { name: "Shuttle B", image: "/images/apc_shuttle_bus1.png" },
+    { name: "Shuttle C", image: "/images/apc_shuttle_bus2.png" },
+    { name: "Shuttle D", image: "/images/apc_shuttle_bus3.png" },
   ];
+
+
   const placeholderImage = "placeholder_image.jpg";
 
   const handleConfirmationClose = () => {

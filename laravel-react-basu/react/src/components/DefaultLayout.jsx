@@ -9,6 +9,7 @@ import {
 import { NavLink, Navigate, Outlet } from "react-router-dom";
 import { useStateContext } from "../contexts/ContextProvider";
 import axiosClient from "../axios";
+import Footer from "./Footer";
 
 const navigation = [
   { name: "Dashboard", to: "/" },
@@ -178,7 +179,11 @@ export default function DefaultLayout() {
           )}
         </Disclosure>
 
+
+
         <Outlet />
+
+        <Footer />
       </div>
     </>
   );
